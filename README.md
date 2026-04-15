@@ -1,26 +1,22 @@
 # CCUF — Claude Code Unity Framework
 
-*Stop guessing. Start building.*
+_Battle-tested guardrails for Unity + MCP._
 
 **[한국어](docs/ko.md)**
 
 ---
 
-A battle-tested guardrail + skill framework for Unity projects powered by [Unity MCP](https://github.com/IvanMurzak/Unity-MCP).
+A guardrail + skill framework for Unity projects powered by [Unity MCP](https://github.com/IvanMurzak/Unity-MCP).
 
 Born from real production work — every rule exists because something broke without it.
 
-```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│  Claude Code │────►│  Unity MCP   │────►│ Unity Editor │
-│  (you + AI)  │     │  (bridge)    │     │ (scene/code) │
-└──────────────┘     └──────────────┘     └──────────────┘
-       │                                         ▲
-       ▼                                         │
-┌──────────────┐                          ┌──────────────┐
-│  .claude/    │  skills, hooks, rules    │  script-     │
-│  (this repo) │─────────────────────────►│  execute     │
-└──────────────┘  guardrails + patterns   └──────────────┘
+```mermaid
+graph LR
+    A[Claude Code] -->|MCP| B[Unity MCP Server]
+    B -->|API| C[Unity Editor]
+    A -->|ref| D[.claude/]
+    D -->|skills·hooks·rules| E[script-execute]
+    E -->|scene ops| C
 ```
 
 ---
@@ -59,12 +55,12 @@ cd your-unity-project
 claude
 
 # 3. Session starts → hook auto-checks MCP connection
-# [CCUF] Unity MCP 연결 확인됨.
+# [CCUF] Unity MCP connected.
 
 # 4. Start working
-# "씬 봐줘" → /unity skill triggers
-# "UI 만들자" → ugui + dark-ui skills guide the work
-# "DOTween 넣자" → dotween-patterns keeps it safe
+# "look at the scene" → /unity skill triggers
+# "let's build UI" → ugui + dark-ui skills guide the work
+# "add DOTween" → dotween-patterns keeps it safe
 ```
 
 ---
@@ -72,60 +68,26 @@ claude
 ## User Flow
 
 ### First time setup
-```
-Install Unity MCP → Copy .claude/ folder → Done.
-```
+
+Install Unity MCP → Copy `.claude/` folder → Done.
 
 ### Every session
-```
-┌─ Session Start ──────────────────────────────┐
-│  hook: check-unity-mcp.sh                    │
-│  → CLI installed? Editor connected? ✓        │
-└──────────────────────────────────────────────┘
-         │
-         ▼
-┌─ Scene Work ─────────────────────────────────┐
-│  skill: unity                                │
-│  → script-execute for batch ops              │
-│  → SerializedObject for permanent wiring     │
-│  → ScreenCapture for visual verification     │
-│                                              │
-│  guardrail: validate-scene-access.sh         │
-│  → .unity direct edit? BLOCKED.              │
-└──────────────────────────────────────────────┘
-         │
-         ▼
-┌─ UI Work ────────────────────────────────────┐
-│  skill: ugui-layout-checklist                │
-│  → childControlWidth=true, flexibleHeight=0  │
-│  → LayoutElement only, never sizeDelta       │
-│                                              │
-│  skill: dark-ui-design                       │
-│  → L1/L2/L3 color values                    │
-│  → Button 3-tier (Standard/CTA/Ghost)        │
-│  → 8px grid spacing                          │
-│                                              │
-│  skill: uiux-design-principles               │
-│  → CRAP diagnostic, Gestalt, visual hierarchy│
-│  → "Why does this look wrong?" answers       │
-└──────────────────────────────────────────────┘
-         │
-         ▼
-┌─ Animation ──────────────────────────────────┐
-│  skill: dotween-patterns                     │
-│  → LayoutGroup-safe: root slide only         │
-│  → Popup: scale 0.92→1 + fade (OutBack)     │
-│  → View transition: 40px slide + fade        │
-└──────────────────────────────────────────────┘
-         │
-         ▼
-┌─ Verify & Debug ─────────────────────────────┐
-│  skill: scene-inspector                      │
-│  → Hierarchy dump, color audit, layout check │
-│                                              │
-│  skill: unity-debug                          │
-│  → Editor.log parsing, error detection       │
-└──────────────────────────────────────────────┘
+
+```mermaid
+graph TD
+    A[Session Start] -->|check-unity-mcp.sh| B{MCP connected?}
+    B -->|Yes| C[Scene Work]
+    B -->|No| B2[Warning: check Editor]
+    C -->|unity skill| D[script-execute workflow]
+    D --> E{UI work?}
+    E -->|Yes| F[ugui-layout-checklist<br/>dark-ui-design<br/>uiux-design-principles]
+    E -->|No| G{Animation?}
+    F --> G
+    G -->|Yes| H[dotween-patterns]
+    G -->|No| I[Verify]
+    H --> I
+    I -->|scene-inspector| J[hierarchy dump · color audit]
+    I -->|unity-debug| K[error log check]
 ```
 
 ---
@@ -136,44 +98,44 @@ Install Unity MCP → Copy .claude/ folder → Done.
 
 | Skill | What it does |
 |-------|-------------|
-| `unity` | MCP editor interaction mode — script-execute patterns, wiring, screenshot workflow |
+| `unity` | MCP editor interaction — script-execute patterns, wiring, screenshot workflow |
 | `unity-debug` | Editor log parsing for compile/runtime errors |
-| `ugui-layout-checklist` | 11 LayoutGroup rules from real bugs — childControl, flexibleHeight, ForceRebuild |
-| `uiux-design-principles` | CRAP, Gestalt, visual hierarchy, spacing theory + 4 reference docs |
-| `dark-ui-design` | Concrete dark UI system — L1/L2/L3 RGB values, button tiers, accent color |
-| `dotween-patterns` | LayoutGroup-safe animation patterns — view transitions, popups, stagger |
-| `scene-inspector` | script-execute diagnostic snippets — hierarchy dump, color audit, layout validation |
+| `ugui-layout-checklist` | 11 LayoutGroup rules from real bugs |
+| `uiux-design-principles` | CRAP, Gestalt, visual hierarchy + 4 reference docs |
+| `dark-ui-design` | Dark UI system — L1/L2/L3 values, button tiers, accent color |
+| `dotween-patterns` | LayoutGroup-safe animation patterns |
+| `scene-inspector` | script-execute diagnostic snippets |
 
 ### Hooks (2)
 
 | Hook | Event | What it does |
 |------|-------|-------------|
-| `check-unity-mcp.sh` | SessionStart | Verifies unity-mcp-cli is installed and Editor is reachable |
-| `validate-scene-access.sh` | PreToolUse (Edit/Write) | Blocks direct .unity file editing — use MCP tools instead |
+| `check-unity-mcp.sh` | SessionStart | Verifies CLI + Editor connection |
+| `validate-scene-access.sh` | PreToolUse (Edit/Write) | Blocks direct .unity editing |
 
 ### Rules (3)
 
 | Rule | Paths | What it enforces |
 |------|-------|-----------------|
-| `scene-safety.md` | `**/*.unity` | No direct scene read/write, SerializedObject for wiring |
-| `ugui-code.md` | `**/UI/**/*.cs` | LayoutElement-only sizing, ColorBlock white, no magic numbers |
+| `scene-safety.md` | `**/*.unity` | No direct scene read/write |
+| `ugui-code.md` | `**/UI/**/*.cs` | LayoutElement-only sizing, ColorBlock white |
 | `mcp-workflow.md` | `**/*.cs` | script-execute first, no agent delegation for complex UI |
 
 ### Docs (2)
 
 | Doc | What it covers |
 |-----|---------------|
-| `known-pitfalls.md` | Every bug we actually hit — MCP, UGUI, design. With solutions. |
-| `mcp-tool-guide.md` | Tool tier list by real usage frequency. 80% of work = 3 tools. |
+| `known-pitfalls.md` | Every bug we hit — MCP, UGUI, design. With solutions. |
+| `mcp-tool-guide.md` | Tool tier list by usage frequency. 80% of work = 3 tools. |
 
 ---
 
 ## Philosophy
 
-- **Bottom-up, not top-down.** Every rule here was a bug first.
-- **Concrete, not abstract.** RGB values, not "use appropriate contrast."
-- **Lean, not comprehensive.** 7 skills that all get used > 72 skills that mostly don't.
-- **MCP-native.** This isn't "AI writes code." It's "AI controls the editor."
+- **Bottom-up.** Every rule here was a bug first.
+- **Concrete.** RGB values, not "use appropriate contrast."
+- **Lean.** 7 skills that all get used > 72 that mostly don't.
+- **MCP-native.** AI controls the editor, not just writes code.
 
 ---
 
