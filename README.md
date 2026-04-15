@@ -23,15 +23,17 @@ graph LR
 
 ## Why this exists
 
-Other frameworks give you 47 agents and 72 skills.
-This one gives you 7 skills and 2 hooks — all proven in production.
+Typing "don't edit .unity files" every session gets old.
+So does re-explaining LayoutGroup rules, color systems, and MCP patterns.
 
-| Other frameworks | CCUF |
-|------------------|------|
-| "Follow CRAP principles" | Here's the exact RGB values that work |
-| "Use LayoutGroup properly" | Here's 11 rules from actual bugs we hit |
-| "Don't edit scene files directly" | Hook that blocks it before you can |
-| 47 virtual studio members | 1 person + MCP = direct scene control |
+This framework turns those repeated instructions into persistent guardrails.
+
+| Without CCUF | With CCUF |
+|--------------|-----------|
+| "Remember to use LayoutElement, not sizeDelta" | Rule auto-loads when you touch UI code |
+| "Check if MCP is connected first" | Hook checks on session start |
+| "Use these L1/L2/L3 color values..." | Skill provides exact RGB values on demand |
+| "Don't edit the .unity file directly" | Hook blocks it before it happens |
 
 ---
 
