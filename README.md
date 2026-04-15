@@ -37,6 +37,19 @@ This framework turns those repeated instructions into persistent guardrails.
 
 ---
 
+## ⚠️ Cost Warning
+
+This framework relies on [Unity MCP](https://github.com/IvanMurzak/Unity-MCP), which gives Claude Code direct access to the Unity Editor. That means Claude reads scene hierarchies, dumps component data, and executes C# scripts — all of which consume tokens.
+
+A single UI remaster session can easily burn **100k–300k+ tokens**. If you're on a metered plan, monitor your usage carefully.
+
+> **Recommended plan:** Claude Max ($100/mo or $200/mo) for unlimited usage.
+> On pay-per-token plans, a heavy scene manipulation session could cost **$5–15+** in a single sitting.
+
+Skills and rules themselves are lightweight (loaded on demand, ~100–500 tokens each). The cost comes from MCP tool calls — especially `script-execute` dumps and screenshot verification loops.
+
+---
+
 ## Prerequisites
 
 - [Unity MCP](https://github.com/IvanMurzak/Unity-MCP) — Lets Claude Code talk directly to Unity Editor. Every skill in this framework depends on it. See that repo for installation.
