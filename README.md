@@ -2,6 +2,8 @@
 
 *Stop guessing. Start building.*
 
+**[한국어](docs/ko.md)**
+
 ---
 
 A battle-tested guardrail + skill framework for Unity projects powered by [Unity MCP](https://github.com/IvanMurzak/Unity-MCP).
