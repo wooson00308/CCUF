@@ -7,13 +7,13 @@ if ! command -v unity-mcp-cli &> /dev/null; then
   exit 1
 fi
 
-# ping으로 Unity Editor 연결 확인
-RESULT=$(unity-mcp-cli run-tool ping --input '{"message": "ccuf-check"}' 2>&1)
+RESULT=$(unity-mcp-cli status 2>&1)
 
-if echo "$RESULT" | grep -q "ccuf-check\|pong\|SUCCESS"; then
+if echo "$RESULT" | grep -q "ready for tool calls"; then
   echo "[CCUF] Unity MCP 연결 확인됨."
 else
   echo "[CCUF] Unity MCP 연결 실패 — Unity Editor가 실행 중인지, MCP 서버가 켜져 있는지 확인." >&2
+  echo "$RESULT" >&2
   exit 1
 fi
 
