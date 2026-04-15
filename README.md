@@ -49,7 +49,7 @@ This framework turns those repeated instructions into persistent guardrails.
 
 ```bash
 # 1. Clone into your project
-git clone https://github.com/user/CCUF.git /tmp/ccuf
+git clone https://github.com/wooson00308/CCUF.git /tmp/ccuf
 cp -r /tmp/ccuf/.claude your-unity-project/.claude
 
 # 2. Open Unity + start Claude Code in your project dir
