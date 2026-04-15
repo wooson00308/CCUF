@@ -19,6 +19,12 @@ graph LR
 
 ---
 
+## Demo
+
+[![Demo Video](https://img.youtube.com/vi/d__GrO9W2Dk/maxresdefault.jpg)](https://www.youtube.com/watch?v=d__GrO9W2Dk)
+
+---
+
 ## Why this exists
 
 Typing "don't edit .unity files" every session gets old.

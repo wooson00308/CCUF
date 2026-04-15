@@ -19,6 +19,12 @@ graph LR
 
 ---
 
+## 데모
+
+[![데모 영상](https://img.youtube.com/vi/d__GrO9W2Dk/maxresdefault.jpg)](https://www.youtube.com/watch?v=d__GrO9W2Dk)
+
+---
+
 ## 왜 만들었나
 
 매 세션마다 ".unity 파일 직접 편집하지 마" 라고 타이핑하는 건 비효율적입니다.
