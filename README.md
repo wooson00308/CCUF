@@ -71,9 +71,9 @@ claude
 # [CCUF] Unity MCP connected.
 
 # 4. Start working
-# "look at the scene" → /unity skill triggers
 # "let's build UI" → ugui + dark-ui skills guide the work
 # "add DOTween" → dotween-patterns keeps it safe
+# MCP workflow rules are always active
 ```
 
 ---
@@ -89,18 +89,16 @@ Install Unity MCP → Copy `.claude/` folder → Done.
 ```mermaid
 graph TD
     A[Session Start] -->|check-unity-mcp.sh| B{MCP connected?}
-    B -->|Yes| C[Scene Work]
+    B -->|Yes| C[Work]
     B -->|No| B2[Warning: check Editor]
-    C -->|unity skill| D[script-execute workflow]
-    D --> E{UI work?}
+    C --> E{UI work?}
     E -->|Yes| F[ugui-layout-checklist<br/>dark-ui-design<br/>uiux-design-principles]
     E -->|No| G{Animation?}
     F --> G
     G -->|Yes| H[dotween-patterns]
     G -->|No| I[Verify]
     H --> I
-    I -->|scene-inspector| J[hierarchy dump · color audit]
-    I -->|unity-debug| K[error log check]
+    I --> J[scene-inspector]
 ```
 
 ---

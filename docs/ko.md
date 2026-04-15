@@ -71,9 +71,9 @@ claude
 # [CCUF] Unity MCP 연결 확인됨.
 
 # 4. 작업을 시작합니다
-# "씬 봐줘" → /unity 스킬 트리거
 # "UI 만들자" → ugui + dark-ui 스킬이 가이드
 # "DOTween 넣자" → dotween-patterns로 안전하게
+# MCP 워크플로우 규칙이 항상 적용됩니다
 ```
 
 ---
@@ -89,18 +89,16 @@ Unity MCP 설치 → `.claude/` 폴더 복사 → 끝.
 ```mermaid
 graph TD
     A[세션 시작] -->|check-unity-mcp.sh| B{MCP 연결됨?}
-    B -->|Yes| C[씬 작업]
+    B -->|Yes| C[작업]
     B -->|No| B2[경고: Editor 확인 필요]
-    C -->|unity 스킬| D[script-execute 중심 작업]
-    D --> E{UI 작업?}
+    C --> E{UI 작업?}
     E -->|Yes| F[ugui-layout-checklist<br/>dark-ui-design<br/>uiux-design-principles]
     E -->|No| G{연출 필요?}
     F --> G
     G -->|Yes| H[dotween-patterns]
     G -->|No| I[검증]
     H --> I
-    I -->|scene-inspector| J[하이라키 덤프·색상 감사]
-    I -->|unity-debug| K[에러 로그 확인]
+    I --> J[scene-inspector]
 ```
 
 ---
