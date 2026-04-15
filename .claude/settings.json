@@ -11,21 +11,33 @@
       "Bash(python3 *)"
     ],
     "deny": [
-      "Bash(rm -rf *)",
       "Bash(git push --force*)",
+      "Bash(git push -f *)",
       "Bash(git reset --hard*)",
       "Bash(git clean -f*)",
       "Read(**/*.unity)"
     ]
   },
   "hooks": {
-    "PostToolUse": [
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/check-unity-mcp.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
       {
         "matcher": "Edit|Write",
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/validate-scene-access.sh \"$TOOL_INPUT\"",
+            "command": "bash .claude/hooks/validate-scene-access.sh",
             "timeout": 5
           }
         ]
