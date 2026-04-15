@@ -12,11 +12,9 @@ Born from real production work — every rule exists because something broke wit
 
 ```mermaid
 graph LR
-    A[Claude Code] -->|MCP| B[Unity MCP Server]
-    B -->|API| C[Unity Editor]
-    A -->|ref| D[.claude/]
-    D -->|skills·hooks·rules| E[script-execute]
-    E -->|scene ops| C
+    A[Claude Code] -->|MCP tools| B[Unity MCP Server]
+    B -->|Unity API| C[Unity Editor]
+    D[.claude/] -->|skills·hooks·rules| A
 ```
 
 ---
