@@ -54,7 +54,9 @@ EditorUtility.SetDirty(component);
 - 코드 수정 후 assets-refresh로 컴파일 확인. 응답에 에러 포함됨.
 - Warning도 무시하지 말 것.
 - 상세 로그 필요 시 console-get-logs 호출.
-- macOS 에디터 로그 위치: `~/Library/Logs/Unity/Editor.log` (현재 세션), `~/Library/Logs/Unity/Editor-prev.log` (이전 세션).
+- 에디터 로그 위치:
+  - macOS: `~/Library/Logs/Unity/Editor.log` (현재), `Editor-prev.log` (이전)
+  - Windows: `%LOCALAPPDATA%\Unity\Editor\Editor.log` (현재), `Editor-prev.log` (이전)
 
 ## 도구 우선순위
 
