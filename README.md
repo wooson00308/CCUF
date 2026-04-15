@@ -6,9 +6,9 @@ Unity MCP 기반 실전 가드레일 + 스킬 프레임워크.
 
 ## 전제 조건
 
-- [Unity MCP Server](https://github.com/nicoboss/unity-mcp-server) (`com.IvanMurzak.Unity.MCP`) 설치
-- `unity-mcp-cli` 글로벌 설치 (`npm install -g unity-mcp-cli`)
-- Claude Code + DOTween (선택)
+- [Unity MCP](https://github.com/IvanMurzak/Unity-MCP) — Unity 에디터를 Claude Code에서 직접 조작하기 위한 MCP 서버. 이 프레임워크의 모든 스킬이 이걸 전제로 동작함. 설치 방법은 해당 레포 참조.
+- [Claude Code](https://claude.ai/claude-code)
+- DOTween (선택 — dotween-patterns 스킬 사용 시)
 
 ## 설치
 
