@@ -109,12 +109,10 @@ graph TD
 
 ## 구성 요소
 
-### 스킬 (7개)
+### 스킬 (5개)
 
 | 스킬 | 역할 |
 |------|------|
-| `unity` | MCP 에디터 조작 모드 — script-execute 패턴, 와이어링, 스크린샷 워크플로우 |
-| `unity-debug` | 에디터 로그 파싱으로 컴파일/런타임 에러 감지 |
 | `ugui-layout-checklist` | 실제 버그에서 나온 LayoutGroup 규칙 11개 |
 | `uiux-design-principles` | CRAP, 게슈탈트, 시각적 위계, 간격 이론 + 레퍼런스 4개 |
 | `dark-ui-design` | 다크 UI 실전 체계 — L1/L2/L3 RGB 값, 버튼 티어, 액센트 컬러 |
@@ -128,13 +126,12 @@ graph TD
 | `check-unity-mcp.sh` | SessionStart | unity-mcp-cli 설치 확인 + Editor 연결 확인 |
 | `validate-scene-access.sh` | PreToolUse | .unity 파일 직접 편집 차단 |
 
-### 규칙 (3개)
+### 규칙 (2개)
 
-| 규칙 | 적용 경로 | 내용 |
-|------|----------|------|
-| `scene-safety.md` | `**/*.unity` | 씬 직접 읽기/쓰기 금지 |
-| `ugui-code.md` | `**/UI/**/*.cs` | LayoutElement만 크기 제어, ColorBlock white 필수 |
-| `mcp-workflow.md` | `**/*.cs` | script-execute 우선, 복잡한 UI는 에이전트 위임 금지 |
+| 규칙 | 내용 |
+|------|------|
+| `unity-mcp-workflow.md` | 항상 로드. 씬 안전, script-execute 패턴, 스크린샷 방법, 에러 확인, 도구 우선순위. MCP 워크플로우 핵심. |
+| `ugui-code.md` | 경로 조건부 (`**/UI/**/*.cs`). LayoutElement만 크기 제어, ColorBlock white 필수. |
 
 ### 문서 (2개)
 

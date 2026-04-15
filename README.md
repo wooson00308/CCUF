@@ -109,12 +109,10 @@ graph TD
 
 ## What's Inside
 
-### Skills (7)
+### Skills (5)
 
 | Skill | What it does |
 |-------|-------------|
-| `unity` | MCP editor interaction — script-execute patterns, wiring, screenshot workflow |
-| `unity-debug` | Editor log parsing for compile/runtime errors |
 | `ugui-layout-checklist` | 11 LayoutGroup rules from real bugs |
 | `uiux-design-principles` | CRAP, Gestalt, visual hierarchy + 4 reference docs |
 | `dark-ui-design` | Dark UI system — L1/L2/L3 values, button tiers, accent color |
@@ -128,13 +126,12 @@ graph TD
 | `check-unity-mcp.sh` | SessionStart | Verifies CLI + Editor connection |
 | `validate-scene-access.sh` | PreToolUse (Edit/Write) | Blocks direct .unity editing |
 
-### Rules (3)
+### Rules (2)
 
-| Rule | Paths | What it enforces |
-|------|-------|-----------------|
-| `scene-safety.md` | `**/*.unity` | No direct scene read/write |
-| `ugui-code.md` | `**/UI/**/*.cs` | LayoutElement-only sizing, ColorBlock white |
-| `mcp-workflow.md` | `**/*.cs` | script-execute first, no agent delegation for complex UI |
+| Rule | What it enforces |
+|------|-----------------|
+| `unity-mcp-workflow.md` | Always loaded. Scene safety, script-execute patterns, screenshot method, error checking, tool priority. The core MCP workflow. |
+| `ugui-code.md` | Path-gated (`**/UI/**/*.cs`). LayoutElement-only sizing, ColorBlock white, no magic numbers. |
 
 ### Docs (2)
 
